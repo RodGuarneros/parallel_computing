@@ -1,3 +1,8 @@
+# Código paralelizado para calcular PI a través de la suma de Riemann
+# Basado en python y ejecutado en MS-MPI
+# La línea de comando en tu terminal o gitbash debe ser: $ mpiexec -np 4 python pi_paralelo.py
+# Elaboró: Rodrigo Guarneros
+
 from mpi4py import MPI
 import math
 import time

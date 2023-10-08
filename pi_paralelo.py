@@ -46,4 +46,4 @@ print("Proceso {} de {} el Rank (número de orden) es: {}, Size (cantidad de pro
 if rank == 0:
     pi = global_sum * h
     print("La aproximación del valor de PI es: {:.15f}, con un error de {:.15f}".format(pi, abs(pi - PI25DT)))
-    print("Tiempo total de ejecución en la parte paralela: {:.4f} segundos".format(end_time - start_time))
+    print("Tiempo total de ejecución en la parte paralela: {:.20f} segundos".format(end_time - start_time))

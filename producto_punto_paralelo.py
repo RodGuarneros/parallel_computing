@@ -5,7 +5,10 @@
 
 from mpi4py import MPI
 import numpy as np
-import time
+
+
+
+start_time = MPI.Wtime()
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
@@ -50,6 +53,7 @@ dimension = comm.bcast(dimension, root=0)
 VectorA = comm.bcast(VectorA, root=0)
 VectorB = comm.bcast(VectorB, root=0)
 
+
 if len(VectorA) != dimension or len(VectorB) != dimension:
     if rank == 0:
         print("Los vectores deben tener la misma dimensión, por favor introduce una dimensión válida.")
@@ -67,8 +71,7 @@ else:
 
     if rank == 0:
         dot_product_total = sum(global_dot_products)
-        start_time = time.time()
-        end_time = time.time()
+        end_time = MPI.Wtime()
 
         print(f"Producto Punto Total = {dot_product_total}")
         print(f"Tiempo de ejecucion: {end_time - start_time:.15f} segundos")

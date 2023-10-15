@@ -2,6 +2,9 @@ import sys
 import numpy as np
 import time
 
+start_time = time.time()
+
+
 n = 10  # Tamaño de la matriz
 if len(sys.argv) > 1:
     n = int(sys.argv[1])
@@ -36,7 +39,6 @@ print(x)
 print("Resultado:")
 print(result)
 
-start_time = time.time()
 end_time = time.time()
 
 print("Tiempo de ejecucion: {:.10f} segundos".format(end_time - start_time))

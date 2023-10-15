@@ -38,6 +38,9 @@ result = None
 A = None
 x = None
 
+start_time = MPI.Wtime()
+
+
 if rank == 0:
     A = np.random.randint(1, 1000, size=(n, n), dtype=int)
     x = np.random.randint(1, 100, size=n, dtype=int)
@@ -67,8 +70,7 @@ if rank == 0:
     print("Resultado del producto punto del vector x y matriz:")
     print(result)
 
-start_time = time.time()
-end_time = time.time()
+end_time = MPI.Wtime()
 
 if rank == 0:
     print("Tiempo de ejecucion: {:.10f} segundos".format(end_time - start_time))

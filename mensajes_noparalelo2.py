@@ -22,4 +22,4 @@ end_time = time.time()
 
 total_elapsed_time = end_time - start_time
 
-print(f"El tiempo total de ejecución es de: {total_elapsed_time} segundos")
+print(f"El tiempo total de ejecución es de: {total_elapsed_time:.15f} segundos")

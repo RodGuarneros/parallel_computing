@@ -1,6 +1,8 @@
 import numpy as np
 import time
 
+start_time = time.time()
+
 while True:
     try:
         dimension = int(input("Introduzca el número de elementos para el vector A y B: "))
@@ -33,8 +35,6 @@ for i in range(dimension):
             print("Introduzca un número real (positivo o negativo).")
     VectorB.append(value)
 
-# Start measuring time
-start_time = time.time()
 
 # Calculate the dot product
 dot_product = np.sum(np.array(VectorA) * np.array(VectorB))

@@ -27,7 +27,7 @@ n = comm.bcast(n, root=0)
 precision = comm.bcast(precision, root=0)
 
 # Inicia el proceso y se registra el tiempo inicial
-start_time = time.time()
+start_time = MPI.Wtime()
 
 h = 1.0 / float(n) # el tamaño de cada incremento dado n
 local_sum = 0.0 # se inicializa la suma
@@ -41,7 +41,7 @@ for i in range(rank + 1, n + 1, size):
 global_sum = comm.reduce(local_sum, op=MPI.SUM, root=0)
 
 # Se registr el tiempo de finalización del algorimo en su parte paralela
-end_time = time.time()
+end_time = MPI.Wtime()
 
 # Resultados: Se imprime el Rank (número de orden), size (cantidad de procesos mpi)
 # y la suma local de cada proceso
@@ -51,4 +51,4 @@ print("Proceso {} de {} el Rank (número de orden) es: {}, Size (cantidad de pro
 if rank == 0:
     pi = global_sum * h
     print("La aproximación del valor de PI es: {:.15f}, con un error de {:.15f}".format(pi, abs(pi - PI25DT)))
-    print("Tiempo total de ejecución en la parte paralela: {:.20f} segundos".format(end_time - start_time))
+    print("Tiempo total de ejecución en la parte paralela: {:.10f} segundos".format(end_time - start_time))

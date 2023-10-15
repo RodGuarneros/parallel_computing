@@ -1,5 +1,4 @@
 from mpi4py import MPI
-import time
 
 # Nota: El programa se guarda en el archivo mensajes_paralelo2.py y se ejecuta con base en MS MPI
 # La línea de comando es: $ mpiexec -n 4 python mensajes_paralelo2.py
@@ -17,12 +16,12 @@ if rank == 0:
 else:
     num_processes = None
 
-
 # Se transmite el número de procesos seleccionado por el usuario
 num_processes = comm.bcast(num_processes, root=0)
 
+
 # Se registra el tiempo inicial
-start_time = time.time()
+start_time = MPI.Wtime()
 
 received_message = "Este mensaje es para"
 received_initial = "Hola soy el proceso 0"
@@ -41,14 +40,14 @@ for i in range(1, num_processes):
         comm.send(message, dest=i)
 
 # Se registra el tiempo de finalización del algoritmo
-end_time = time.time()
+end_time = MPI.Wtime()
 
 # Se calcula el tiempo total de ejecución
 total_elapsed_time = comm.reduce(end_time - start_time, op=MPI.SUM, root=0)
 
 # Se imprime el tiempo total para conocimiento del usuario
 if rank == 0:
-    print(f"El tiempo total de este algoritmo fue de: {total_elapsed_time} segundos")
+    print(f"El tiempo total de este algoritmo fue de: {total_elapsed_time:.15f} segundos")
 
 # Se concluye el proceso MPI
 MPI.Finalize()
